@@ -3,6 +3,7 @@ package com.example.convidados.repository
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import com.example.convidados.infra.Const
 
 class GuestDataBase(
     context: Context,
@@ -16,10 +17,10 @@ class GuestDataBase(
     override fun onCreate(db: SQLiteDatabase) {
         // Criação do banco
         val createTableGuest = """
-            CREATE TABLE Guest (
-               id INTEGER PRIMARY KEY AUTOINCREMENT,
-               name TEXT NOT NULL,
-               presence INTEGER DEFAULT 0
+            CREATE TABLE ${Const.KEY.TABLE_NAME} (
+               ${Const.KEY.COLUMN_ID} INTEGER PRIMARY KEY AUTOINCREMENT,
+               ${Const.KEY.TABLE_NAME} TEXT NOT NULL,
+               ${Const.KEY.COLUMN_PRESENCE} INTEGER DEFAULT 0
             )
         """.trimIndent()
 
