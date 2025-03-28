@@ -5,17 +5,18 @@
     android:id="@+id/mobile_navigation"
     app:startDestination="@+id/nav_allguests">
 
+
     <fragment
         android:id="@+id/nav_allguests"
-        android:name="com.example.convidados.view.PresentFragment"
+        android:name="com.example.convidados.view.AllGuestsFragment"
         android:label="@string/allguests"
-        tools:layout="@layout/fragment_present" />
+        tools:layout="@layout/fragment_allguests" />
 
     <fragment
         android:id="@+id/nav_present"
-        android:name="com.example.convidados.view.AllGuestsFragment"
+        android:name="com.example.convidados.view.PresentFragment"
         android:label="@string/present"
-        tools:layout="@layout/fragment_allguests" />
+        tools:layout="@layout/fragment_present" />
 
     <fragment
         android:id="@+id/nav_absent"

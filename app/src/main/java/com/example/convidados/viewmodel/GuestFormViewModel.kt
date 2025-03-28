@@ -6,7 +6,6 @@ import com.example.convidados.model.GuestModel
 import com.example.convidados.repository.GuestRepository
 
 class GuestFormViewModel(application: Application) : AndroidViewModel(application) {
-
     private var repository =  GuestRepository.getInstance(application)
 
     fun save(guest: GuestModel) {
