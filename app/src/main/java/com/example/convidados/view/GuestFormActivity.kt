@@ -34,7 +34,7 @@ class GuestFormActivity : AppCompatActivity(), View.OnClickListener {
 
             when(inputName){
                 "" -> {
-                    Snackbar.make(view, "Preencha o campo nome", Snackbar.LENGTH_LONG).show()
+                    Snackbar.make(view, "Preencha o nome do convidado", Snackbar.LENGTH_LONG).show()
                     return
                 }
                 else -> {
