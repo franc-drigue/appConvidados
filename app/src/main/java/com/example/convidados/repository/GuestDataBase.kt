@@ -19,7 +19,7 @@ class GuestDataBase(
         val createTableGuest = """
             CREATE TABLE ${Const.KEY.TABLE_NAME} (
                ${Const.KEY.COLUMN_ID} INTEGER PRIMARY KEY AUTOINCREMENT,
-               ${Const.KEY.TABLE_NAME} TEXT NOT NULL,
+               ${Const.KEY.COLUMN_NAME} TEXT NOT NULL,
                ${Const.KEY.COLUMN_PRESENCE} INTEGER DEFAULT 0
             )
         """.trimIndent()

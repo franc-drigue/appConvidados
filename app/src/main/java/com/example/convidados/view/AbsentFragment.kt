@@ -4,40 +4,66 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.convidados.databinding.FragmentAbsentBinding
+import com.example.convidados.view.adapter.GuestsAdapter
 import com.example.convidados.viewmodel.AbsentViewModel
 
 class AbsentFragment : Fragment() {
 
-    private var _binding: FragmentAbsentBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
+    private var _binding: FragmentAbsentBinding? = null;
+    private val binding get() = _binding!!;
+    private lateinit var absentViewModel: AbsentViewModel;
+    private val adapter = GuestsAdapter();
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val AbsentViewModel =
-            ViewModelProvider(this).get(AbsentViewModel::class.java)
+        _binding = FragmentAbsentBinding.inflate(inflater, container, false);
+        return binding.root;
+    }
 
-        _binding = FragmentAbsentBinding.inflate(inflater, container, false)
-        val root: View = binding.root
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
 
-        val textView: TextView = binding.textSlideshow
-        AbsentViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        absentViewModel = ViewModelProvider(this)[AbsentViewModel::class.java];
+
+        // Layout
+        binding.recyclerAllGuestsAbsent.layoutManager = LinearLayoutManager(context);
+
+        // Adapter
+        binding.recyclerAllGuestsAbsent.adapter = adapter;
+
+        absentViewModel.getAllAbsent();
+
+        observer();
+        delete();
+    }
+
+    override fun onResume() {
+        super.onResume();
+        absentViewModel.getAllAbsent();
+    }
+
+    fun observer() {
+        absentViewModel.guestAbsent.observe(viewLifecycleOwner) {
+            adapter.updateGuests(it);
         }
-        return root
     }
 
     override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+        super.onDestroyView();
+        _binding = null;
+    }
+
+    private fun delete() {
+        adapter.setOnDeleteClickListener { id ->
+            absentViewModel.delete(id);
+            absentViewModel.getAllAbsent();
+        }
     }
 }

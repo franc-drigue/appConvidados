@@ -11,23 +11,23 @@ import com.example.convidados.view.viewholder.GuestViewHolder
 class GuestsAdapter : RecyclerView.Adapter<GuestViewHolder>() {
 
     // Variável que vai armazenar a lista que vem da ViewModel e que por sua vez vem do Repository
-    private var guestList: List<GuestModel> = listOf()
-    private var onDeleteClick: ((Int) -> Unit)? = null
+    private var guestList: List<GuestModel> = listOf();
+    private var onDeleteClick: ((Int) -> Unit)? = null;
 
     // função que carrega o layout inflado de cada item da lista e retorna o layout pronto
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GuestViewHolder {
-        val item = RowGuestBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return GuestViewHolder(item)
+        val item = RowGuestBinding.inflate(LayoutInflater.from(parent.context), parent, false);
+        return GuestViewHolder(item);
     }
 
     // função que pega e vincula cada item da lista com o layout já inflado
     override fun onBindViewHolder(holder: GuestViewHolder, position: Int) {
-       holder.bind(guestList[position], onDeleteClick ?: {})
+       holder.bind(guestList[position], onDeleteClick ?: {});
     }
 
     // função que conta cada item da lista
     override fun getItemCount(): Int {
-        return guestList.count()
+        return guestList.count();
     }
 
 

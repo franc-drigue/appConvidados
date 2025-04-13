@@ -109,9 +109,9 @@ class GuestRepository private constructor(context: Context) {
 
         cursor?.use {
             while (it.moveToNext()) {
-                val id = it.getInt(it.getColumnIndexOrThrow("id"))
-                val name = it.getString(it.getColumnIndexOrThrow("nome"))
-                val presence = it.getInt(it.getColumnIndexOrThrow("presente")) == 1
+                val id = it.getInt(it.getColumnIndexOrThrow(Const.KEY.COLUMN_ID))
+                val name = it.getString(it.getColumnIndexOrThrow(Const.KEY.COLUMN_NAME))
+                val presence = it.getInt(it.getColumnIndexOrThrow(Const.KEY.COLUMN_PRESENCE)) == 1
                 list.add(GuestModel(id, name, presence))
             }
         }

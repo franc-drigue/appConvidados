@@ -11,19 +11,15 @@ class AllGuestsViewModel(application: Application) : AndroidViewModel(applicatio
 
     private val repository = GuestRepository.getInstance(application.applicationContext)
 
-    // Variável que recebe a mudanças
     private val _listAllguest = MutableLiveData<List<GuestModel>>()
 
-    // Variável que rebece a lista alterada
-        // Essa variável é usada no observer, na Activity ou fragmento
     val guests: LiveData<List<GuestModel>> = _listAllguest
 
     fun getAll(){
-        // listAllguest recebe o valor que vem da função getAll do repositório
-       _listAllguest.value = repository.getAll()
+       _listAllguest.value = repository.getAll();
     }
 
     fun delete(id: Int) {
-        repository.delete(id)
+        repository.delete(id);
     }
 }
